@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>fileservice</display-name>
+  
+  <listener>
+    <listener-class>site.manage.FileSweeper</listener-class>
+  </listener>
+
+  <context-param>
+    <param-name>dbDriverClass</param-name>
+    <param-value>org.mariadb.jdbc.Driver</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>dbURL</param-name>
+    <param-value>jdbc:mariadb://localhost:3306/fileservice?user=root&#038;password=secret</param-value>
+  </context-param>
+  
+  <context-param>
+	<param-name>SweepInterval</param-name>
+	<param-value>5</param-value>
+  </context-param>
+  
+  <context-param>
+    <param-name>UploadFolder</param-name>
+    <param-value>/WEB-INF/Upload/</param-value>
+  </context-param>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>FileReceive</display-name>
+    <servlet-name>FileReceive</servlet-name>
+    <servlet-class>site.manage.FileReceive</servlet-class>
+    <multipart-config>
+    <max-file-size>-1</max-file-size>
+    <max-request-size>-1</max-request-size>
+    <file-size-threshold>1048576</file-size-threshold>
+</multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileReceive</servlet-name>
+    <url-pattern>/receiveFile.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+        <description></description>
+        <display-name>FileDelete</display-name>
+        <servlet-name>FileDelete</servlet-name>
+        <servlet-class>site.manage.FileDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileDelete</servlet-name>
+        <url-pattern>/deleteFile.do</url-pattern>
+    </servlet-mapping>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>FileSend</display-name>
+    <servlet-name>FileSend</servlet-name>
+    <servlet-class>site.manage.FileSend</servlet-class>
+    <multipart-config>
+      <max-file-size>-1</max-file-size>
+      <max-request-size>-1</max-request-size>
+      <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FileSend</servlet-name>
+    <url-pattern>/sendFile.do</url-pattern>
+  </servlet-mapping>
+</web-app>

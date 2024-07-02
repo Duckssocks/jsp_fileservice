@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>파일 전송 횟수 제한</title>
+</head>
+<body>
+<div style='width:400px;' align='center'> 
+  <strong>이전에 업로드한 다른 파일이 이미 존재합니다.</strong><br><br>
+</div>
+5분간 추가 업로드가 제한됩니다. 5분 후에 다시 시도해 주세요.<br><br>
+
+<form action='deleteFile.do' method='post'>
+   <input type='hidden' name='id' value='1'>
+   
+   <label for='delete'><small>이전에 업로드한 파일을 지금 삭제하기:</small></label>
+   <input type='submit' name='delete' value='Delete'>
+</form> 
+<br>
+
+</body>
+</html>
